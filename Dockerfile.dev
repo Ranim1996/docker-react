@@ -1,0 +1,14 @@
+# this file is created to create a one single image to be used
+FROM node:16-alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+#this run command is added to solve an error accured when trying to run the dockerfilr
+RUN mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
+
+COPY . .
+
+CMD ["npm","run","start"] 
